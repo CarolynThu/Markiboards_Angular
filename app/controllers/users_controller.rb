@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   def index
-    if current_user 
-    else
-      redirect_to new_user_path
-    end
+    # if current_user 
+    # else
+    #   redirect_to new_user_path
+    # end
   end
 
   
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
-    if @user.save!
+    if @user.save
       session[:user_id] = @user.id.to_s
       redirect_to user_path(@user)
     else
