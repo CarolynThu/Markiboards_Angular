@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @boards = current_user.boards.all
-    @board = current_user.boards.new
+    # @boards = current_user.boards.all
+    # @board = current_user.boards.new
   end
 
   def new
@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:email, :password))
-    if @user.save
+    @user = User.new(params.require(:user).permit(:email, :password, :password_confirmation))
+    if @user.save!
       session[:user_id] = @user.id.to_s
       redirect_to user_path(@user)
     else
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params.require(:user).permit(:email, :password))
+    if @user.update_attributes(params.require(:user).permit(:email, :password, :password_confirmation))
       redirect_to user_path(current_user)
     else
       render 'edit'

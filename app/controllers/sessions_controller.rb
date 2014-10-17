@@ -11,13 +11,13 @@ class SessionsController < ApplicationController
       # Creates a cookie for the user, holding the logged in user ID
       session[:user_id] = user.id.to_s
       if current_user.is_admin
-        redirect_to boards_path
+        redirect_to user_path(user)
       else
         redirect_to user_path(current_user)
       end
     else
       flash[:error] = "Email or Password do not match! Please try again"
-      redirect_to main_path
+      redirect_to new_session_path
 
     end
   end
@@ -25,6 +25,6 @@ class SessionsController < ApplicationController
   def destroy
     # Kill all of our cookies
     reset_session
-    redirect_to main_path
+    redirect_to welcomes_path
   end
 end
