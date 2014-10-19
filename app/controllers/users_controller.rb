@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @boards = Board.all
     # @boards = current_user.boards.all
     # @board = current_user.boards.new
   end

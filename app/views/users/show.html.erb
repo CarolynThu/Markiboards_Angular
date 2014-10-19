@@ -1,3 +1,13 @@
 <h1>M A R K I  B O A R D S</h1>
-
+<br>
+Hello, <%= current_user.email %><br>
 <%= link_to "logout", session_path, method: :delete %> 
+<br>
+<br>
+<h3> Choose Your Boards </h3>
+<% @boards.each do |b| %>
+<li>
+  <%= b.name %> <%= b.price %> <%= b.description %>
+  <%= link_to 'Edit', edit_board_path(b.id) %>
+</li> 
+<% end %>

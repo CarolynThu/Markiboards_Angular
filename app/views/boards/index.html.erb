@@ -1,2 +1,21 @@
-<h1>Boards#index</h1>
-<p>Find me in app/views/boards/index.html.erb</p>
+
+<h3> D E S I G N    Y O U R    B O A R D </h3>
+
+<p> Add a New Board</p>
+<%= form_for @board do |f| %>
+Name: <%= f.text_field :name, placeholder: "Name" %>
+<%= f.text_field :price, placeholder: "Price" %>
+<%= f.text_field :description, placeholder: "Description" %>
+
+<%= f.submit "submit!" %>
+
+<% end %>
+
+
+<h3> List of Boards </h3>
+<% @boards.each do |b| %>
+<li>
+  <%= b.name %> <%= b.price %> <%= b.description %>
+  <%= link_to 'Edit', edit_board_path(b.id) %>
+</li> 
+<% end %>
